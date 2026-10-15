@@ -57,7 +57,8 @@ async function init() {
     return;
   }
 
-  if (state.category !== ALL && !catalog.categories.some((category) => category.id === state.category)) {
+  // Fall back to "All" when the address names a category that does not exist or has no resources.
+  if (state.category !== ALL && !catalog.resources.some((resource) => resource.category === state.category)) {
     state.category = ALL;
   }
   buildFilters();
