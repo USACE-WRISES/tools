@@ -29,6 +29,7 @@ import argparse
 import concurrent.futures
 import datetime as dt
 import html.parser
+import http.cookiejar
 import http.client
 import json
 import os
@@ -65,13 +66,16 @@ ID_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 MAX_TAGS = 8
 MAX_DESCRIPTION = 280
 MAX_NOTE = 160
-REVIEW_DECISIONS = {"excluded", "pending"}
+REVIEW_DECISIONS = {"included", "excluded", "pending"}
+REVIEW_IGNORE = {"pages", "homepage"}
 
 # Hosts whose links are worth suggesting when a new repository's README is scanned. Anything
 # else is ignored so that personal or internal links never end up in public CI logs.
 README_LINK_HOSTS = ("github.io", "github.com", "shinyapps.io", "posit.cloud", "r-project.org",
                      "pypi.org", "doi.org", "zenodo.org", "hdl.handle.net", "huggingface.co")
 SIGN_IN_HINTS = ("login", "signin", "sign-in", "sso", "oauth", "auth/", "cac", "adfs")
+BOT_WALL_TITLES = ("verifying", "just a moment", "attention required", "access denied", "are you a robot",
+                   "captcha", "security check")
 
 
 # --------------------------------------------------------------------------------------------
@@ -324,6 +328,9 @@ def validate_review(review: object) -> list[Issue]:
             issues.append(Issue("error", where, f"decision must be one of: {', '.join(sorted(REVIEW_DECISIONS))}"))
         if not nonempty_str(entry.get("reason")):
             issues.append(Issue("error", where, "reason is required"))
+        ignore = entry.get("ignore", [])
+        if not isinstance(ignore, list) or not set(ignore) <= REVIEW_IGNORE:
+            issues.append(Issue("error", where, f"ignore must be a list containing only: {', '.join(sorted(REVIEW_IGNORE))}"))
     return issues
 
 
@@ -510,11 +517,14 @@ def compare(org: str, org_repos: list[dict], catalog: dict, review: dict, invent
                      "readme_links": readme_links(gh, org, repo["name"]) if scan_readmes else []}
             out["new"].append(entry)
             continue
+        if not users and decision == "included":
+            out["problems"].append(("warning", repo["name"], "marked 'included' in repo-review.json "
+                                    "but no resource in the catalog references it"))
         if repo["state"] == "pending":
             out["pending"].append({"name": repo["name"], "url": repo["url"],
                                    "reason": reviewed[key].get("reason", "")})
-        if users and decision == "excluded":
-            out["problems"].append(("warning", repo["name"], "marked 'excluded' in repo-review.json "
+        if users and decision in ("excluded", "pending"):
+            out["problems"].append(("warning", repo["name"], f"marked '{decision}' in repo-review.json "
                                     "but referenced by the catalog"))
 
         notes: list[str] = []
@@ -530,9 +540,11 @@ def compare(org: str, org_repos: list[dict], catalog: dict, review: dict, invent
             if repo["archived"]:
                 out["problems"].append(("warning", repo["name"], "repository is archived but listed by "
                                         + ", ".join(users)))
-            if repo["homepage"] and norm_url(repo["homepage"]) not in normalized:
+            ignore = set((reviewed.get(key) or {}).get("ignore", []))
+            if repo["homepage"] and "homepage" not in ignore and norm_url(repo["homepage"]) not in normalized:
                 notes.append(f"GitHub homepage {repo['homepage']} is not linked from the catalog")
-            if repo["pages_url"] and not any(url.startswith(norm_url(repo["pages_url"])) for url in normalized):
+            if (repo["pages_url"] and "pages" not in ignore
+                    and not any(url.startswith(norm_url(repo["pages_url"])) for url in normalized)):
                 notes.append(f"has a GitHub Pages site ({repo['pages_url']}) that the catalog does not link")
         if notes:
             out["changes"].append({"name": repo["name"], "state": repo["state"], "notes": notes})
@@ -616,7 +628,8 @@ def http_fetch(url: str, timeout: float, accept: str = "text/html,application/xh
     """GET a URL (following redirects). Returns (status, final_url, headers, first 64 KB of HTML)."""
     request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT, "Accept": accept,
                                                    "Accept-Language": "en-US,en;q=0.8"})
-    with urllib.request.urlopen(request, timeout=timeout) as response:
+    opener = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(http.cookiejar.CookieJar()))
+    with opener.open(request, timeout=timeout) as response:
         content_type = response.headers.get_content_type()
         wants_body = content_type in ("text/html", "application/xhtml+xml", "application/json")
         body = response.read(65536) if wants_body else b""
@@ -684,8 +697,18 @@ def check_http(result: LinkResult, timeout: float, follow_stub: bool = True) -> 
                 result.set("unverified", f"redirects to what looks like a sign-in page: {final_url}")
                 return
         title = " ".join(scanner.title.split())
-        if re.search(r"\b(404|page not found|not found)\b", title, re.I):
+        final_path = urllib.parse.urlsplit(final_lower).path
+        if any(hint in title.lower() for hint in BOT_WALL_TITLES) or "verify" in final_path:
+            result.set("unverified", f"bot-protection page ('{title[:60]}'); check in a browser")
+            return
+        if result.final_url and re.search(r"(^|/)(error|errors|notfound|not-found|404)([./_-]|$)", final_path):
+            result.set("broken", f"redirects to an error page: {final_url}")
+            return
+        if re.search(r"\b(404|page not found|not found|an error has occurred|server error)\b", title, re.I):
             result.set("unverified", f"HTTP {status} but the page title is '{title[:80]}'")
+            return
+        if re.search(rb"<input[^>]+type=[\"']?password", body, re.I):
+            result.set("unverified", f"page asks for a password (sign-in required?); title '{title[:60]}'")
             return
         host = (urllib.parse.urlsplit(result.url).hostname or "").lower()
         if host.endswith("r-project.org") and b"removed from the CRAN repository" in body:
@@ -1039,6 +1062,8 @@ def parse_args(argv: list[str] | None) -> argparse.Namespace:
                         help="print the JSON results between marker lines (for CI logs)")
     parser.add_argument("--quiet", action="store_true", help="do not print the Markdown report")
     parser.add_argument("--timeout", type=float, default=30.0, help="per-request timeout in seconds")
+    parser.add_argument("--extra-url", action="append", default=[], metavar="URL",
+                        help="also check this URL (repeatable), e.g. a link you plan to add")
     return parser.parse_args(argv)
 
 
@@ -1097,6 +1122,8 @@ def main(argv: list[str] | None = None) -> int:
 
         if not args.skip_links:
             links = collect_links(catalog, [ROOT / "index.html", ROOT / "404.html"])
+            for url in args.extra_url:
+                links.setdefault(url, LinkResult(url)).used_by.append("--extra-url")
             # Without a token, API-based checks of github.com links would exhaust the rate limit.
             use_api = gh if (token and not ctx["api_error"]) else None
             run_link_checks(links, use_api, args.timeout)

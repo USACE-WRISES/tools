@@ -24,6 +24,13 @@
     "WRISES.Models": {
       "decision": "excluded",
       "reason": "Earlier single-page catalog of WRISES models (May 2025); its entries are included in this directory, which credits it as a source."
+    },
+    "HyporheicFloPy": {
+      "decision": "included",
+      "reason": "Listed as the Hyporheic Modeling Library. Its GitHub Pages site is not linked because the rendered notebooks are case-specific working output.",
+      "ignore": [
+        "pages"
+      ]
     }
   }
 }

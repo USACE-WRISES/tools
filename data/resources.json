@@ -156,8 +156,7 @@
       "tags": ["Riparian", "Urban streams", "Rapid assessment"],
       "note": "Model code is available on request from WRISES; documentation was in review as of May 2025.",
       "links": [
-        { "type": "app", "label": "Calculator in WARM", "url": "https://wrises.shinyapps.io/warm/" },
-        { "type": "reference", "label": "Beargrass Creek study", "url": "https://www.lrd.usace.army.mil/Missions/Projects/Article/3637533/three-forks-of-beargrass-creek-ecosystem-restoration-feasibility-study/" }
+        { "type": "app", "label": "Calculator in WARM", "url": "https://wrises.shinyapps.io/warm/" }
       ]
     },
     {
@@ -199,7 +198,7 @@
       "tags": ["Habitat suitability", "ArcGIS Pro", "Raster", "GIS"],
       "links": [
         { "type": "download", "label": "Toolbox", "url": "https://doi.org/10.21079/11681/41881" },
-        { "type": "documentation", "label": "User guide (ERDC/EL SR-22-4)", "url": "https://erdc-library.erdc.dren.mil/bitstreams/63c6c2a8-e005-4727-b8fc-97c1c768a402/download" }
+        { "type": "documentation", "label": "User guide (ERDC/EL SR-22-4)", "url": "https://hdl.handle.net/11681/45128" }
       ]
     },
     {
@@ -325,8 +324,7 @@
       "type": "Notebooks",
       "tags": ["Hyporheic", "FloPy", "HEC-RAS", "Jupyter"],
       "links": [
-        { "type": "repository", "url": "https://github.com/USACE-WRISES/HyporheicFloPy" },
-        { "type": "publication", "label": "Conference paper (SEDHYD 2023)", "url": "https://www.sedhyd.org/2023Program/s287.html" }
+        { "type": "repository", "url": "https://github.com/USACE-WRISES/HyporheicFloPy" }
       ],
       "repos": ["HyporheicFloPy"]
     },
@@ -353,8 +351,8 @@
       "type": "Web app",
       "tags": ["Channel hydraulics", "Cross-section", "Normal depth", "Stream restoration"],
       "links": [
-        { "type": "app", "label": "Trapezoidal section tool", "url": "https://cw-environment.erdc.dren.mil/cwmg/rha/RHA-Trap.html" },
-        { "type": "app", "label": "Irregular section tool", "url": "https://cw-environment.erdc.dren.mil/cwmg/rha/RHA-Cross.html" },
+        { "type": "app", "label": "Trapezoidal section tool", "url": "https://cw-environment.usace.army.mil/cwmg/rha/RHA-Trap.html" },
+        { "type": "app", "label": "Irregular section tool", "url": "https://cw-environment.usace.army.mil/cwmg/rha/RHA-Cross.html" },
         { "type": "documentation", "label": "Technical note", "url": "https://hdl.handle.net/11681/4038" }
       ]
     },
@@ -425,7 +423,7 @@
         { "type": "publication", "label": "Journal article", "url": "https://doi.org/10.3389/fevo.2023.1215471" },
         { "type": "reference", "label": "USGS cost report", "url": "https://www.usgs.gov/publications/dam-removal-cost-databases-and-drivers" },
         { "type": "repository", "label": "App source", "url": "https://github.com/USACE-WRISES/DamRemovalCostModel" },
-        { "type": "repository", "label": "Revised model code (NID)", "url": "https://github.com/USACE-WRISES/DamRemovalCostUS" }
+        { "type": "repository", "label": "Nationwide cost model code", "url": "https://github.com/USACE-WRISES/DamRemovalCostUS" }
       ],
       "repos": ["DamRemovalCostModel", "DamRemovalCostUS"]
     },
