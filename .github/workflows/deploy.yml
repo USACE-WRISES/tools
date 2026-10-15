@@ -1,0 +1,61 @@
+name: Deploy to GitHub Pages
+
+# Builds the site on every push and pull request so problems show up before merging; only pushes
+# to main are published. One-time setup: Settings > Pages > Build and deployment > Source:
+# "GitHub Actions".
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+
+      - name: Validate the catalog
+        run: python scripts/discover_resources.py --validate-only
+
+      - name: Assemble the site
+        # Only these files are published. If you add a new top-level folder or file that the page
+        # needs, add it here too.
+        run: |
+          mkdir -p _site/data
+          cp index.html 404.html favicon.svg _site/
+          cp -R css js fonts _site/
+          cp data/resources.json _site/data/
+          find _site -type f | sort
+
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: _site
+
+  deploy:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v5

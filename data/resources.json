@@ -346,13 +346,11 @@
       "id": "rha",
       "name": "RHA",
       "fullName": "Rapid Hydraulic Assessment",
-      "description": "Two simple tools for first-order estimates of single cross-section channel hydraulics at normal flow (trapezoidal and irregular sections), with a technical note on hydraulic analysis for stream restoration.",
+      "description": "First-order methods for estimating single cross-section channel hydraulics at normal flow (trapezoidal and irregular sections) to support stream restoration planning and design, documented in an ERDC technical note.",
       "category": "hydrology-hydraulics",
-      "type": "Web app",
+      "type": "Model report",
       "tags": ["Channel hydraulics", "Cross-section", "Normal depth", "Stream restoration"],
       "links": [
-        { "type": "app", "label": "Trapezoidal section tool", "url": "https://cw-environment.usace.army.mil/cwmg/rha/RHA-Trap.html" },
-        { "type": "app", "label": "Irregular section tool", "url": "https://cw-environment.usace.army.mil/cwmg/rha/RHA-Cross.html" },
         { "type": "documentation", "label": "Technical note", "url": "https://hdl.handle.net/11681/4038" }
       ]
     },
@@ -391,10 +389,9 @@
       "category": "hydrology-hydraulics",
       "type": "Web app",
       "tags": ["Life safety", "Flood risk", "Screening", "Prioritization"],
-      "note": "Developed with the USACE Risk Management Center.",
+      "note": "Developed with the USACE Risk Management Center. The LSRI application requires sign-in.",
       "links": [
-        { "type": "app", "label": "LSRI homepage", "url": "https://lsri.sec.usace.army.mil/" },
-        { "type": "reference", "label": "Planning webinar", "url": "https://planning.erdc.dren.mil/toolbox/resources.cfm?Id=0&WId=700&Option=Planning%20Webinars" }
+        { "type": "reference", "label": "Planning webinar on LSRI methods", "url": "https://planning.erdc.dren.mil/toolbox/resources.cfm?Id=0&WId=700&Option=Planning%20Webinars" }
       ]
     },
     {

@@ -726,7 +726,12 @@ def check_http(result: LinkResult, timeout: float, follow_stub: bool = True) -> 
                 if probe.status == "broken":
                     result.set("broken", "redirect page points to a broken target; " + "; ".join(notes), status)
                     return
-        status_name = "redirected" if result.final_url else "ok"
+        # Redirects within the same host (canonical paths, trailing slashes) are routine.
+        same_host = (urllib.parse.urlsplit(final_lower).hostname
+                     == (urllib.parse.urlsplit(result.url).hostname or "").lower())
+        if result.final_url and same_host:
+            notes.append(f"redirects to {final_url}")
+        status_name = "redirected" if result.final_url and not same_host else "ok"
         result.set(status_name, "; ".join(notes), status)
         return
 
@@ -1148,7 +1153,8 @@ def main(argv: list[str] | None = None) -> int:
         print("=== BEGIN DISCOVERY JSON ===")
         print(json.dumps(data, indent=1))
         print("=== END DISCOVERY JSON ===")
-    print(f"Report written to {output}", file=sys.stderr)
+    sys.stdout.flush()  # keep stderr messages from landing inside the JSON block in CI logs
+    print(f"Report written to {output}", file=sys.stderr, flush=True)
 
     if errors:
         return 1

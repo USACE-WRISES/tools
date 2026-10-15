@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <title>WRISES Tools &amp; Resources</title>
+  <meta name="description" content="Explore tools, applications, data, and technical resources for water resources and ecosystem restoration from the USACE-WRISES GitHub organization.">
+  <meta name="color-scheme" content="light">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="fonts/public-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/styles.css">
+  <script type="module" src="js/app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <svg class="icon-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+    <symbol id="i-search" viewBox="0 0 16 16"><circle cx="7" cy="7" r="4.75"/><path d="m10.5 10.5 3.75 3.75"/></symbol>
+    <symbol id="i-launch" viewBox="0 0 16 16"><path d="M9.5 2.5h4v4M13.5 2.5 7.75 8.25"/><path d="M12 9.5v3a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 2 12.5v-7A1.5 1.5 0 0 1 3.5 4h3"/></symbol>
+    <symbol id="i-download" viewBox="0 0 16 16"><path d="M8 2.25v8M4.75 7 8 10.25 11.25 7M2.75 13.75h10.5"/></symbol>
+    <symbol id="i-book" viewBox="0 0 16 16"><path d="M8 4.25c-1.6-1.1-3.4-1.4-5.5-.75v9.25c2.1-.65 3.9-.35 5.5.75 1.6-1.1 3.4-1.4 5.5-.75V3.5C11.4 2.85 9.6 3.15 8 4.25ZM8 4.25v9.25"/></symbol>
+    <symbol id="i-database" viewBox="0 0 16 16"><ellipse cx="8" cy="3.75" rx="5" ry="1.75"/><path d="M3 3.75v8.5c0 .97 2.24 1.75 5 1.75s5-.78 5-1.75v-8.5M3 8c0 .97 2.24 1.75 5 1.75S13 8.97 13 8"/></symbol>
+    <symbol id="i-code" viewBox="0 0 16 16"><path d="M5.5 4.5 2 8l3.5 3.5M10.5 4.5 14 8l-3.5 3.5"/></symbol>
+    <symbol id="i-file" viewBox="0 0 16 16"><path d="M9.25 1.75H4.5A1.25 1.25 0 0 0 3.25 3v10a1.25 1.25 0 0 0 1.25 1.25h7A1.25 1.25 0 0 0 12.75 13V5.25Z"/><path d="M9.25 1.75v3.5h3.5M5.75 8.5h4.5M5.75 11h4.5"/></symbol>
+    <symbol id="i-link" viewBox="0 0 16 16"><path d="M6.75 9.25a2.9 2.9 0 0 0 4.1 0l2.2-2.2a2.9 2.9 0 0 0-4.1-4.1l-.8.8"/><path d="M9.25 6.75a2.9 2.9 0 0 0-4.1 0l-2.2 2.2a2.9 2.9 0 0 0 4.1 4.1l.8-.8"/></symbol>
+    <symbol id="i-info" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6.25"/><path d="M8 7.25v4M8 4.9v.1"/></symbol>
+    <symbol id="i-external" viewBox="0 0 16 16"><path d="M5.5 3.5h7v7M12.5 3.5l-9 9"/></symbol>
+  </svg>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="./"><span class="brand-mark">WRISES</span> Tools &amp; Resources</a>
+      <nav class="site-nav" aria-label="Main">
+        <ul>
+          <li><a href="#directory">Directory</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="https://github.com/USACE-WRISES">GitHub organization<svg class="icon" aria-hidden="true" focusable="false"><use href="#i-external"/></svg></a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section class="intro" aria-labelledby="page-title">
+      <div class="container">
+        <h1 id="page-title">WRISES Tools &amp; Resources</h1>
+        <p class="lede">Explore tools, applications, data, and technical resources for water resources and ecosystem restoration.</p>
+        <p class="intro-text">Search or browse the directory, then launch a tool or go straight to its documentation, downloads or source code. Every resource stays in its original location.</p>
+        <form class="search" id="search-form" role="search">
+          <label class="search-label" for="search-input">Search the directory</label>
+          <div class="search-field">
+            <svg class="icon search-icon" aria-hidden="true" focusable="false"><use href="#i-search"/></svg>
+            <input class="search-input" id="search-input" name="q" type="search" placeholder="e.g. riparian, HEC-RAS, CEICA" autocomplete="off" spellcheck="false" aria-describedby="result-status">
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="section featured" id="featured" aria-labelledby="featured-title" hidden>
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title" id="featured-title">Featured</h2>
+        </div>
+        <div class="card-grid" id="featured-grid"></div>
+      </div>
+    </section>
+
+    <section class="section directory" id="directory" aria-labelledby="directory-title">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title" id="directory-title">Resource directory</h2>
+          <p class="result-status" id="result-status" role="status"></p>
+        </div>
+        <fieldset class="filters" id="filters" hidden>
+          <legend class="filters-legend">Filter by category</legend>
+          <div class="filter-options" id="filter-options"></div>
+        </fieldset>
+        <div class="results" id="results"></div>
+        <div class="empty-state" id="empty-state" hidden>
+          <p>No resources match your search.</p>
+          <button class="button button-secondary" id="clear-filters" type="button">Clear search and filters</button>
+        </div>
+        <noscript>
+          <p class="notice">This directory needs JavaScript to list its resources. You can browse the <a href="https://github.com/USACE-WRISES">USACE-WRISES GitHub organization</a> directly.</p>
+        </noscript>
+      </div>
+    </section>
+
+    <section class="about" id="about" aria-labelledby="about-title">
+      <div class="container">
+        <h2 class="section-title" id="about-title">About this directory</h2>
+        <div class="about-body">
+          <p>WRISES Tools &amp; Resources brings together tools, applications, data, training and technical resources from the Water Research Integrating Socio-ecological and Engineered Systems (WRISES) team of the U.S. Army Engineer Research and Development Center (ERDC) Environmental Laboratory, and work it has done with partners.</p>
+          <p>This page is a directory, not a replacement: each resource stays in its own repository or website, maintained by its authors. Entries for models without a GitHub repository are adapted from the team’s earlier <a href="https://usace-wrises.github.io/WRISES.Models/">WRISES Models catalog</a> (May 2025).</p>
+          <p>Listing a resource here does not mean it is certified, approved or ready for production use. Check each resource’s documentation for its status, intended use, limitations and license.</p>
+        </div>
+        <ul class="about-links">
+          <li><a href="https://github.com/USACE-WRISES"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-code"/></svg>USACE-WRISES on GitHub</a></li>
+          <li><a href="https://github.com/USACE-WRISES/tools/issues"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-link"/></svg>Suggest a resource or report a broken link</a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p id="catalog-date-wrap" hidden>Catalog updated <time id="catalog-date"></time></p>
+      <ul class="footer-links">
+        <li><a href="https://github.com/USACE-WRISES/tools">Source for this site</a></li>
+        <li><a href="https://github.com/USACE-WRISES">USACE-WRISES on GitHub</a></li>
+      </ul>
+    </div>
+  </footer>
+</body>
+</html>
