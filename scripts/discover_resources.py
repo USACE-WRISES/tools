@@ -598,10 +598,11 @@ class PageScanner(html.parser.HTMLParser):
         self.refresh = ""
         self.canonical = ""
         self._in_title = False
+        self._title_done = False  # only the page's own <title>, not <title> elements inside SVG icons
 
     def handle_starttag(self, tag, attrs):
         attributes = {key.lower(): (value or "") for key, value in attrs}
-        if tag == "title":
+        if tag == "title" and not self._title_done:
             self._in_title = True
         elif tag == "meta" and attributes.get("http-equiv", "").lower() == "refresh":
             match = re.search(r"url\s*=\s*['\"]?([^'\";]+)", attributes.get("content", ""), re.I)
@@ -611,8 +612,9 @@ class PageScanner(html.parser.HTMLParser):
             self.canonical = attributes.get("href", "").strip()
 
     def handle_endtag(self, tag):
-        if tag == "title":
+        if tag == "title" and self._in_title:
             self._in_title = False
+            self._title_done = True
 
     def handle_data(self, data):
         if self._in_title and len(self.title) < 300:
@@ -1153,13 +1155,14 @@ def main(argv: list[str] | None = None) -> int:
         print("=== BEGIN DISCOVERY JSON ===")
         print(json.dumps(data, indent=1))
         print("=== END DISCOVERY JSON ===")
-    sys.stdout.flush()  # keep stderr messages from landing inside the JSON block in CI logs
-    print(f"Report written to {output}", file=sys.stderr, flush=True)
+    # Status messages go to stdout too: CI logs merge stdout and stderr in arrival order, which
+    # could split the JSON block.
+    print(f"Report written to {output}", flush=True)
 
     if errors:
         return 1
     if ctx["api_error"]:
-        print(f"GitHub API unavailable: {ctx['api_error']}", file=sys.stderr)
+        print(f"GitHub API unavailable: {ctx['api_error']}", flush=True)
         return 3
     broken = [r for r in (ctx["links"] or {}).values() if r.status == "broken"]
     problems = [p for p in ctx["comparison"]["problems"] if p[0] == "error"] if ctx["comparison"] else []
