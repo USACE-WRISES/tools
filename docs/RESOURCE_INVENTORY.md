@@ -34,16 +34,9 @@ Re-run `python scripts/discover_resources.py` to compare this inventory with the
 | Repositories not listed | 6 |
 | Directory entries backed by an organization repository | 23 |
 | Directory entries from the earlier catalog without an organization repository | 12 |
-| Featured entries | 4 (STAF, ecorest, HYPE, RESST) |
 
 **Categories:** Stream & Riparian Assessment (9) · Ecological Modeling (8) · Hydrologic & Hydraulic
 Modeling (8) · Planning & Decision Support (3) · Data & GIS (3) · Training & Technical Resources (4).
-
-**Featured** entries were chosen on evidence from their repositories: versioned releases or a
-published package, a working application or installer, documentation, recent maintenance, and broad
-applicability: STAF (documentation site with three web apps and released desktop tooling), ecorest
-(published on CRAN, with a web app), HYPE (Windows installer with regular releases, v1.4.1 on
-2026-10-02) and RESST (web application with a published data release).
 
 ## Organization repositories
 

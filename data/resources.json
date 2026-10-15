@@ -42,7 +42,6 @@
       "category": "stream-assessment",
       "type": "Website",
       "tags": ["Stream function", "Tiered assessment", "EASI", "SFARI", "DEEP", "Ecosystem condition"],
-      "featured": true,
       "links": [
         { "type": "documentation", "label": "STAF website", "url": "https://usace-wrises.github.io/staf/" },
         { "type": "documentation", "label": "Apply STAF: apps and calculators", "url": "https://usace-wrises.github.io/staf/tools/" },
@@ -178,7 +177,6 @@
       "category": "ecological-modeling",
       "type": "R package",
       "tags": ["Habitat suitability", "HSI", "CEICA", "CRAN", "Shiny"],
-      "featured": true,
       "links": [
         { "type": "app", "label": "Launch web app", "url": "https://wrises.shinyapps.io/ecorest-webapp/" },
         { "type": "download", "label": "CRAN package", "url": "https://CRAN.R-project.org/package=ecorest" },
@@ -294,7 +292,6 @@
       "category": "hydrology-hydraulics",
       "type": "Desktop app",
       "tags": ["Hyporheic", "Groundwater", "HEC-RAS", "MODFLOW", "Windows"],
-      "featured": true,
       "note": "License terms are pending; contact the authors before redistributing.",
       "links": [
         { "type": "download", "label": "Windows installer", "url": "https://github.com/USACE-WRISES/hype-app/releases/latest" },
@@ -446,7 +443,6 @@
       "category": "data-gis",
       "type": "Web app",
       "tags": ["Reservoir sedimentation", "Sediment management", "Map", "GIS data"],
-      "featured": true,
       "links": [
         { "type": "app", "url": "https://usace-wrises.github.io/resst/" },
         { "type": "dataset", "label": "GIS data downloads", "url": "https://github.com/USACE-WRISES/resst/releases/tag/data-latest" },

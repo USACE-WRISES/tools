@@ -59,7 +59,7 @@ RESOURCE_TYPES = {
     "Assessment method",
 }
 CATEGORY_KEYS = {"id", "name", "description"}
-RESOURCE_KEYS = {"id", "name", "fullName", "description", "category", "type", "tags", "featured",
+RESOURCE_KEYS = {"id", "name", "fullName", "description", "category", "type", "tags",
                  "status", "note", "links", "repos"}
 LINK_KEYS = {"type", "url", "label"}
 ID_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
@@ -250,8 +250,6 @@ def validate_catalog(catalog: object) -> list[Issue]:
             if len(set(lowered)) != len(lowered):
                 warning(where, "duplicate tags")
 
-        if "featured" in resource and not isinstance(resource["featured"], bool):
-            error(where, "featured must be true or false")
         if "status" in resource and resource["status"] is not None:
             if not nonempty_str(resource["status"]):
                 error(where, "status must be text")

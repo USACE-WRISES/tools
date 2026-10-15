@@ -34,8 +34,6 @@ async function init() {
   dom.form = document.getElementById("search-form");
   dom.input = document.getElementById("search-input");
   dom.status = document.getElementById("result-status");
-  dom.featured = document.getElementById("featured");
-  dom.featuredGrid = document.getElementById("featured-grid");
   dom.filters = document.getElementById("filters");
   dom.filterOptions = document.getElementById("filter-options");
   dom.results = document.getElementById("results");
@@ -62,7 +60,6 @@ async function init() {
     state.category = ALL;
   }
   buildFilters();
-  renderFeatured();
   renderCatalogDate();
   render({ immediate: true });
 }
@@ -127,11 +124,9 @@ function normalizeResource(item, category, categoryName) {
     fullName: isText(item.fullName) ? item.fullName.trim() : "",
     description: item.description.trim(),
     category,
-    categoryName,
     type: isText(item.type) ? item.type.trim() : "",
     status: isText(item.status) ? item.status.trim() : "",
     note: isText(item.note) ? item.note.trim() : "",
-    featured: item.featured === true,
     tags,
     links: ordered,
   };
@@ -270,7 +265,6 @@ function render({ immediate = false } = {}) {
   dom.results.replaceChildren(...groups);
   dom.results.hidden = visible.length === 0;
   dom.empty.hidden = visible.length > 0;
-  dom.featured.hidden = !catalog.resources.some((r) => r.featured) || tokens.length > 0 || state.category !== ALL;
 
   updateStatus(statusMessage(visible.length, tokens.length > 0), immediate);
   scheduleUrlUpdate();
@@ -289,20 +283,12 @@ function renderGroup(category, items) {
       ]),
       category.description ? el("p", { className: "group-description" }, category.description) : null,
     ]),
-    el("div", { className: "card-grid" }, items.map((resource) => createCard(resource, { headingLevel: 4 }))),
+    el("div", { className: "card-grid" }, items.map((resource) => createCard(resource))),
   ]);
 }
 
-function renderFeatured() {
-  const featured = catalog.resources.filter((resource) => resource.featured);
-  dom.featuredGrid.replaceChildren(
-    ...featured.map((resource) => createCard(resource, { headingLevel: 3, showCategory: true })),
-  );
-}
-
-function createCard(resource, { headingLevel, showCategory = false }) {
+function createCard(resource) {
   const meta = el("p", { className: "card-meta" }, [
-    showCategory ? el("span", { className: "card-category" }, resource.categoryName) : null,
     resource.type ? el("span", { className: "card-type" }, resource.type) : null,
     resource.status ? el("span", { className: "badge" }, resource.status) : null,
   ]);
@@ -312,18 +298,27 @@ function createCard(resource, { headingLevel, showCategory = false }) {
         "div",
         { className: "card-actions" },
         resource.links.map((link, index) =>
-          el("a", { className: index === 0 && LINK_TYPES[link.type].primary ? "button" : "action-link", href: link.url }, [
-            icon(LINK_TYPES[link.type].icon),
-            link.label,
-            el("span", { className: "visually-hidden" }, `: ${resource.name}`),
-          ]),
+          el(
+            "a",
+            {
+              className: index === 0 && LINK_TYPES[link.type].primary ? "button" : "action-link",
+              href: link.url,
+              target: "_blank",
+              rel: "noopener",
+            },
+            [
+              icon(LINK_TYPES[link.type].icon),
+              link.label,
+              el("span", { className: "visually-hidden" }, `: ${resource.name} (opens in a new tab)`),
+            ],
+          ),
         ),
       )
     : null;
 
   return el("article", { className: "card" }, [
     meta.childNodes.length ? meta : null,
-    el(`h${headingLevel}`, { className: "card-title" }, resource.name),
+    el("h4", { className: "card-title" }, resource.name),
     resource.fullName ? el("p", { className: "card-subtitle" }, resource.fullName) : null,
     el("p", { className: "card-description" }, resource.description),
     resource.note ? el("p", { className: "card-note" }, [icon("i-info"), el("span", {}, resource.note)]) : null,
@@ -388,14 +383,16 @@ function showLoadError() {
       el("p", {}, "The resource catalog could not be loaded."),
       el("p", {}, [
         "Please reload the page, or browse the ",
-        el("a", { href: "https://github.com/USACE-WRISES" }, "USACE-WRISES GitHub organization"),
+        el("a", { href: "https://github.com/USACE-WRISES", target: "_blank", rel: "noopener" }, [
+          "WRISES GitHub organization",
+          el("span", { className: "visually-hidden" }, " (opens in a new tab)"),
+        ]),
         " directly.",
       ]),
     ]),
   );
   dom.status.textContent = "";
   dom.filters.hidden = true;
-  dom.featured.hidden = true;
 }
 
 // ---------------------------------------------------------------------------------------------

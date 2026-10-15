@@ -60,7 +60,6 @@ only links to them.
 | `category` | yes | The `id` of an entry in `categories` |
 | `type` | yes | Short label such as `Web app`, `Desktop app`, `R package`, `Python package`, `Dataset`, `Training`, `Report`, `Model report`, `Assessment method` |
 | `tags` | no | Up to 8 keywords; the first 4 are shown, all are searchable |
-| `featured` | no | `true` to also show the card in the Featured section |
 | `status` | no | Only a status the resource itself documents: `Draft`, `Alpha`, `Beta`, `Preliminary`, `Experimental`, `Archived` |
 | `note` | no | One short caveat from the resource's documentation (license pending, sign-in required, dated review status) |
 | `links` | yes | List of `{ "type", "url", "label" }`; see below |
@@ -82,14 +81,11 @@ Add `"label"` to replace the default text, for example `"label": "Windows instal
 card's first link is one of the first five types, it is shown as the filled button. Only add links that work for the public:
 no intranet or sign-in pages, no personal or tokenized links.
 
-## Change a description, feature a resource or add a category
+## Change a description or add a category
 
 - **Description:** edit `description` (and `note` or `status` if they changed). Keep it accurate to
   the resource's own documentation. Do not describe a tool as certified, approved or production-ready
   unless its documentation says so.
-- **Featured:** set `"featured": true` (or remove the field to unfeature). Keep the Featured section
-  small; it currently shows four resources with releases or published packages, live applications or
-  installers, and active maintenance.
 - **Category:** add `{ "id", "name", "description" }` to `categories`. Categories appear in the order
   listed; a category with no resources is hidden automatically.
 - Update `"updated"` at the top of the file; the page footer shows it.
