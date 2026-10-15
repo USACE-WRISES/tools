@@ -1,0 +1,548 @@
+{
+  "schemaVersion": 1,
+  "updated": "2026-10-15",
+  "categories": [
+    {
+      "id": "stream-assessment",
+      "name": "Stream & Riparian Assessment",
+      "description": "Frameworks, indices and calculators for assessing stream and riparian condition."
+    },
+    {
+      "id": "ecological-modeling",
+      "name": "Ecological Modeling",
+      "description": "Habitat, connectivity and population models that estimate ecological outcomes of restoration alternatives."
+    },
+    {
+      "id": "hydrology-hydraulics",
+      "name": "Hydrologic & Hydraulic Modeling",
+      "description": "Tools for channel hydraulics, roughness, streamflow analysis and surface water–groundwater exchange."
+    },
+    {
+      "id": "planning-decision-support",
+      "name": "Planning & Decision Support",
+      "description": "Economic, cost and decision analyses that pair ecological outcomes with costs."
+    },
+    {
+      "id": "data-gis",
+      "name": "Data & GIS",
+      "description": "Map-based databases, downloadable datasets and terrain utilities."
+    },
+    {
+      "id": "training-resources",
+      "name": "Training & Technical Resources",
+      "description": "Courses, tutorials, curated references and research tools."
+    }
+  ],
+  "resources": [
+    {
+      "id": "staf",
+      "name": "STAF",
+      "fullName": "Stream Tiered Assessment Framework",
+      "description": "A tiered, functions-based framework for evaluating stream condition at Screening, Rapid and Detailed levels of effort, so sites can be compared and restoration outcomes reported with consistent scoring.",
+      "category": "stream-assessment",
+      "type": "Website",
+      "tags": ["Stream function", "Tiered assessment", "EASI", "SFARI", "DEEP", "Ecosystem condition"],
+      "featured": true,
+      "links": [
+        { "type": "documentation", "label": "STAF website", "url": "https://usace-wrises.github.io/staf/" },
+        { "type": "documentation", "label": "Apply STAF: apps and calculators", "url": "https://usace-wrises.github.io/staf/tools/" },
+        { "type": "reference", "label": "Tier selector", "url": "https://usace-wrises.github.io/staf/tier-selector/" },
+        { "type": "repository", "url": "https://github.com/USACE-WRISES/staf" }
+      ],
+      "repos": ["staf"]
+    },
+    {
+      "id": "easi",
+      "name": "EASI",
+      "fullName": "Ecosystem Assessment Screening Index",
+      "description": "Screening-tier (Tier 1) STAF web app: click a point on a map to delineate the watershed and reach, compute 20 stream-function metrics from public national data, and produce an ecosystem condition report.",
+      "category": "stream-assessment",
+      "type": "Web app",
+      "tags": ["STAF", "Tier 1", "Screening", "Watershed delineation"],
+      "note": "Screening tool, not a regulatory determination.",
+      "links": [
+        { "type": "app", "url": "https://usace-wrises.github.io/staf/easi/" },
+        { "type": "download", "label": "Excel calculator", "url": "https://usace-wrises.github.io/staf/tools/#easi" },
+        { "type": "documentation", "label": "Walkthrough", "url": "https://usace-wrises.github.io/staf/walkthroughs/easi/" },
+        { "type": "repository", "url": "https://github.com/USACE-WRISES/staf" }
+      ],
+      "repos": ["staf"]
+    },
+    {
+      "id": "sfari",
+      "name": "SFARI",
+      "fullName": "Stream Functions Assessment and Rapid Index",
+      "description": "Rapid-tier (Tier 2) STAF field assessment: national desktop evidence supports the assessor, who scores 80 metrics across 20 stream functions to produce an ecosystem condition index.",
+      "category": "stream-assessment",
+      "type": "Web app",
+      "tags": ["STAF", "Tier 2", "Rapid assessment", "Field assessment"],
+      "note": "The Excel calculator is a draft pending Eco-PCX certification.",
+      "links": [
+        { "type": "app", "url": "https://usace-wrises.github.io/staf/sfari/" },
+        { "type": "download", "label": "Excel calculator (draft)", "url": "https://usace-wrises.github.io/staf/tools/#sfari" },
+        { "type": "repository", "url": "https://github.com/USACE-WRISES/staf" }
+      ],
+      "repos": ["staf"]
+    },
+    {
+      "id": "deep",
+      "name": "DEEP",
+      "fullName": "Detailed Evaluation of Ecosystem Processes",
+      "description": "Detailed-tier (Tier 3) STAF assessment that scores measured metric values against published reference curves, with a predefined regional assessment for each EPA Level III ecoregion.",
+      "category": "stream-assessment",
+      "type": "Web app",
+      "tags": ["STAF", "Tier 3", "Reference curves", "Ecoregions"],
+      "note": "Regional assessments are Draft or Preliminary; none are certified.",
+      "links": [
+        { "type": "app", "url": "https://usace-wrises.github.io/staf/deep/" },
+        { "type": "download", "label": "Regional calculators", "url": "https://usace-wrises.github.io/staf/tools/#deep" },
+        { "type": "repository", "url": "https://github.com/USACE-WRISES/staf" }
+      ],
+      "repos": ["staf"]
+    },
+    {
+      "id": "streamcurves",
+      "name": "StreamCurves Desktop",
+      "fullName": "Reference and Regional Curve Builder",
+      "description": "Windows desktop app for developing reference and regional curves for geomorphic stream metrics and building the detailed-tier assessments that DEEP runs.",
+      "category": "stream-assessment",
+      "type": "Desktop app",
+      "tags": ["STAF", "Reference curves", "Regional curves", "Windows"],
+      "note": "For assessment developers rather than day-to-day users.",
+      "links": [
+        { "type": "download", "label": "Latest release (Windows)", "url": "https://github.com/USACE-WRISES/staf/releases/latest" },
+        { "type": "repository", "url": "https://github.com/USACE-WRISES/staf" }
+      ],
+      "repos": ["staf"]
+    },
+    {
+      "id": "warm",
+      "name": "WARM",
+      "fullName": "Web App for Riparian Models",
+      "description": "Web app that helps users find, compare and run nine existing riparian assessment models through error-checked calculators.",
+      "category": "stream-assessment",
+      "type": "Web app",
+      "tags": ["Riparian", "Model selection", "Calculator", "Shiny"],
+      "note": "As of May 2025, the web app was under review for USACE certification.",
+      "links": [
+        { "type": "app", "url": "https://wrises.shinyapps.io/warm/" },
+        { "type": "documentation", "label": "Technical note on riparian models", "url": "https://doi.org/10.21079/11681/47706" },
+        { "type": "publication", "label": "Conference paper", "url": "https://doi.org/10.1061/9780784485163.024" },
+        { "type": "repository", "url": "https://github.com/USACE-WRISES/WARM" }
+      ],
+      "repos": ["WARM"]
+    },
+    {
+      "id": "refi",
+      "name": "REFI",
+      "fullName": "Riparian Ecological Functions Index",
+      "description": "Semi-quantitative rapid assessment of riparian condition intended for nationwide use, built around riparian effects on instream outcomes, ecological connectivity and unique habitats.",
+      "category": "stream-assessment",
+      "type": "Assessment method",
+      "tags": ["Riparian", "Rapid assessment", "Ecological function"],
+      "note": "As of May 2025, the model and its documentation were under review.",
+      "links": [
+        { "type": "publication", "label": "Utoy Creek application (journal article)", "url": "https://doi.org/10.3390/land14030449" },
+        { "type": "reference", "label": "EMRRP webinars", "url": "https://emrrp.el.erdc.dren.mil/webinars.html" }
+      ]
+    },
+    {
+      "id": "smurf",
+      "name": "SMURF",
+      "fullName": "Simple Model for Urban Riparian Function",
+      "description": "Rapid assessment of highly urbanized riparian zones that combines field protocols with desktop geospatial measures, developed for the Beargrass Creek ecosystem restoration study in Louisville, Kentucky.",
+      "category": "stream-assessment",
+      "type": "Assessment method",
+      "tags": ["Riparian", "Urban streams", "Rapid assessment"],
+      "note": "Model code is available on request from WRISES; documentation was in review as of May 2025.",
+      "links": [
+        { "type": "app", "label": "Calculator in WARM", "url": "https://wrises.shinyapps.io/warm/" },
+        { "type": "reference", "label": "Beargrass Creek study", "url": "https://www.lrd.usace.army.mil/Missions/Projects/Article/3637533/three-forks-of-beargrass-creek-ecosystem-restoration-feasibility-study/" }
+      ]
+    },
+    {
+      "id": "qheils",
+      "name": "QHEILS",
+      "fullName": "Qualitative Habitat Evaluation Index for Louisville Streams",
+      "description": "Interdisciplinary assessment method for urban streams in the Louisville, Kentucky region that adapts the Qualitative Habitat Evaluation Index (QHEI) with geomorphic change and watershed connectivity.",
+      "category": "stream-assessment",
+      "type": "Assessment method",
+      "tags": ["Urban streams", "QHEI", "Habitat", "R"],
+      "links": [
+        { "type": "documentation", "label": "Technical note with R script", "url": "https://doi.org/10.21079/11681/48759" }
+      ]
+    },
+    {
+      "id": "ecorest",
+      "name": "ecorest",
+      "description": "R package and companion web app for habitat suitability index (HSI) modeling with 300+ USFWS habitat models, plus cost-effectiveness and incremental cost analysis (CEICA).",
+      "category": "ecological-modeling",
+      "type": "R package",
+      "tags": ["Habitat suitability", "HSI", "CEICA", "CRAN", "Shiny"],
+      "featured": true,
+      "links": [
+        { "type": "app", "label": "Launch web app", "url": "https://wrises.shinyapps.io/ecorest-webapp/" },
+        { "type": "download", "label": "CRAN package", "url": "https://CRAN.R-project.org/package=ecorest" },
+        { "type": "documentation", "label": "Preliminary documentation", "url": "https://usace-wrises.github.io/ecorest.documentation/" },
+        { "type": "repository", "label": "Package source", "url": "https://github.com/USACE-WRISES/ecorest-pkg-update" },
+        { "type": "repository", "label": "Web app source", "url": "https://github.com/USACE-WRISES/ecorest-webapp" }
+      ],
+      "repos": ["ecorest-pkg-update", "ecorest-webapp", "ecorest.documentation"]
+    },
+    {
+      "id": "gsi-toolbox",
+      "name": "GSI Toolbox",
+      "fullName": "Geospatial Suitability Indices Toolbox",
+      "description": "ArcGIS Pro toolbox for running habitat suitability models in a raster-based geospatial environment, with algorithms comparable to ecorest.",
+      "category": "ecological-modeling",
+      "type": "ArcGIS toolbox",
+      "tags": ["Habitat suitability", "ArcGIS Pro", "Raster", "GIS"],
+      "links": [
+        { "type": "download", "label": "Toolbox", "url": "https://doi.org/10.21079/11681/41881" },
+        { "type": "documentation", "label": "User guide (ERDC/EL SR-22-4)", "url": "https://erdc-library.erdc.dren.mil/bitstreams/63c6c2a8-e005-4727-b8fc-97c1c768a402/download" }
+      ]
+    },
+    {
+      "id": "wuct",
+      "name": "WUCT",
+      "fullName": "Watershed-Scale Upstream Connectivity Toolkit",
+      "description": "R model that estimates quality-weighted, accessible habitat at the watershed scale to quantify benefits of removing barriers (dams, culverts, fish ladders) or impacts of new ones. Approved for national certification as a USACE planning model in October 2018.",
+      "category": "ecological-modeling",
+      "type": "R script",
+      "tags": ["Connectivity", "Fish passage", "Dam removal", "Barrier prioritization"],
+      "note": "An R function without a graphical interface.",
+      "links": [
+        { "type": "documentation", "label": "Model report", "url": "https://github.com/USACE-WRISES/WUCT/blob/main/Instructions/README.md" },
+        { "type": "repository", "url": "https://github.com/USACE-WRISES/WUCT" },
+        { "type": "publication", "label": "Network theory paper", "url": "https://doi.org/10.1890/12-1564.1" }
+      ],
+      "repos": ["WUCT"]
+    },
+    {
+      "id": "pcem",
+      "name": "PCEM",
+      "fullName": "Proctor Creek Ecological Model",
+      "description": "Two-phase modeling toolkit for the Proctor Creek (Atlanta, Georgia) urban stream restoration feasibility study, combining instream, riparian, hydrologic and connectivity modules into a watershed-scale index of stream ecosystem integrity.",
+      "category": "ecological-modeling",
+      "type": "Model report",
+      "tags": ["Urban streams", "Stream integrity", "Connectivity", "Case study"],
+      "links": [
+        { "type": "documentation", "label": "Phase 1 report", "url": "https://doi.org/10.21079/11681/29514" },
+        { "type": "documentation", "label": "Phase 2 report", "url": "https://doi.org/10.21079/11681/29515" }
+      ]
+    },
+    {
+      "id": "nybem",
+      "name": "NYBEM",
+      "fullName": "New York Bight Ecological Model",
+      "description": "Model for assessing changes in habitat quantity and quality under changing hydrodynamic conditions across six coastal ecosystem types, developed for USACE coastal storm risk management studies in the New York Bight.",
+      "category": "ecological-modeling",
+      "type": "R package",
+      "tags": ["Coastal", "Estuarine", "Habitat", "Storm risk management"],
+      "note": "As of May 2025, the documentation was in review for USACE certification.",
+      "links": [
+        { "type": "documentation", "label": "Online model documentation", "url": "https://mvr-gis.github.io/NYBEM-Report/" },
+        { "type": "repository", "label": "nybem R package", "url": "https://github.com/MVR-GIS/nybem" }
+      ]
+    },
+    {
+      "id": "threm",
+      "name": "THREM",
+      "fullName": "Tidal Habitats and Resilience Evaluation Model",
+      "description": "Quantitative model for tidal marsh restoration in subsided former baylands of San Francisco Bay, sensitive to measures such as beneficially used material for bathymetry lifts, ecotones and refugia.",
+      "category": "ecological-modeling",
+      "type": "Model report",
+      "tags": ["Tidal marsh", "Coastal", "San Francisco Bay", "Resilience"],
+      "links": [
+        { "type": "publication", "label": "Paper on model structure and application", "url": "https://doi.org/10.1142/9789811275135_0195" }
+      ]
+    },
+    {
+      "id": "rgsm",
+      "name": "RGSM Population Tool",
+      "fullName": "Rio Grande silvery minnow recruitment model",
+      "description": "Couples a 2-D hydraulic model of Middle Rio Grande floodplain inundation with an integrated population model to estimate silvery minnow recruitment under hydrologic, restoration and management scenarios.",
+      "category": "ecological-modeling",
+      "type": "Web app",
+      "tags": ["Rio Grande silvery minnow", "Population model", "Floodplain inundation", "Shiny"],
+      "note": "Research code accompanying a manuscript.",
+      "links": [
+        { "type": "app", "url": "https://usace-wrises.github.io/rgsm_hydraulic/" },
+        { "type": "documentation", "label": "Walkthrough", "url": "https://usace-wrises.github.io/rgsm_hydraulic/walkthrough/" },
+        { "type": "repository", "url": "https://github.com/USACE-WRISES/rgsm_hydraulic" },
+        { "type": "publication", "label": "Base model (Yackulic et al. 2022)", "url": "https://doi.org/10.1002/ecs2.4240" }
+      ],
+      "repos": ["rgsm_hydraulic"]
+    },
+    {
+      "id": "riverweed",
+      "name": "riverweed",
+      "fullName": "Growth models for aquatic macrophytes",
+      "description": "R package of functions for estimating growth of aquatic macrophytes in rivers, designed around hornleaf riverweed (Podostemum ceratophyllum) with modules that may apply to other taxa.",
+      "category": "ecological-modeling",
+      "type": "R package",
+      "tags": ["Macrophytes", "Podostemum", "Growth model"],
+      "links": [
+        { "type": "repository", "url": "https://github.com/USACE-WRISES/riverweed" }
+      ],
+      "repos": ["riverweed"]
+    },
+    {
+      "id": "hype",
+      "name": "HYPE",
+      "fullName": "Hyporheic Exchange Explorer",
+      "description": "Windows desktop app for reach-scale surface water–groundwater interaction modeling: builds and runs HEC-RAS 2D, MODFLOW 6 and MODPATH 7 models from a reach picked on a map, delineates the hyporheic zone and produces site reports.",
+      "category": "hydrology-hydraulics",
+      "type": "Desktop app",
+      "tags": ["Hyporheic", "Groundwater", "HEC-RAS", "MODFLOW", "Windows"],
+      "featured": true,
+      "note": "License terms are pending; contact the authors before redistributing.",
+      "links": [
+        { "type": "download", "label": "Windows installer", "url": "https://github.com/USACE-WRISES/hype-app/releases/latest" },
+        { "type": "repository", "url": "https://github.com/USACE-WRISES/hype-app" },
+        { "type": "reference", "label": "Report an issue", "url": "https://github.com/USACE-WRISES/hype-app/issues" }
+      ],
+      "repos": ["hype-app"]
+    },
+    {
+      "id": "hyporheictools",
+      "name": "HyporheicTools",
+      "description": "Python command-line workflow and ArcGIS Pro toolbox that builds and runs MODFLOW 6 and MODPATH 7 models for hyporheic analysis from geospatial inputs, driven by a single YAML configuration.",
+      "category": "hydrology-hydraulics",
+      "type": "Python package",
+      "status": "Alpha",
+      "tags": ["Hyporheic", "MODFLOW 6", "MODPATH 7", "FloPy", "ArcGIS Pro"],
+      "links": [
+        { "type": "repository", "url": "https://github.com/USACE-WRISES/hype-tool" }
+      ],
+      "repos": ["hype-tool"]
+    },
+    {
+      "id": "hyporheic-library",
+      "name": "Hyporheic Modeling Library",
+      "description": "Python notebooks that automate part of a coupled workflow between HEC-RAS surface-water results and FloPy (MODFLOW 6) groundwater models for hyporheic zone assessment.",
+      "category": "hydrology-hydraulics",
+      "type": "Notebooks",
+      "tags": ["Hyporheic", "FloPy", "HEC-RAS", "Jupyter"],
+      "links": [
+        { "type": "repository", "url": "https://github.com/USACE-WRISES/HyporheicFloPy" },
+        { "type": "publication", "label": "Conference paper (SEDHYD 2023)", "url": "https://www.sedhyd.org/2023Program/s287.html" }
+      ],
+      "repos": ["HyporheicFloPy"]
+    },
+    {
+      "id": "hydrocal",
+      "name": "HYDROCAL",
+      "fullName": "Hydraulic Roughness Calculator",
+      "description": "Combines several methods for estimating how vegetation affects channel and floodplain hydraulic roughness in one interface; originally an Excel tool, now an R package and web app.",
+      "category": "hydrology-hydraulics",
+      "type": "Web app",
+      "tags": ["Hydraulic roughness", "Manning's n", "Vegetation", "CRAN"],
+      "links": [
+        { "type": "app", "url": "https://wrises.shinyapps.io/hydrocal/" },
+        { "type": "download", "label": "CRAN package", "url": "https://CRAN.R-project.org/package=HYDROCAL" },
+        { "type": "documentation", "label": "Technical note", "url": "https://hdl.handle.net/11681/2034" }
+      ]
+    },
+    {
+      "id": "rha",
+      "name": "RHA",
+      "fullName": "Rapid Hydraulic Assessment",
+      "description": "Two simple tools for first-order estimates of single cross-section channel hydraulics at normal flow (trapezoidal and irregular sections), with a technical note on hydraulic analysis for stream restoration.",
+      "category": "hydrology-hydraulics",
+      "type": "Web app",
+      "tags": ["Channel hydraulics", "Cross-section", "Normal depth", "Stream restoration"],
+      "links": [
+        { "type": "app", "label": "Trapezoidal section tool", "url": "https://cw-environment.erdc.dren.mil/cwmg/rha/RHA-Trap.html" },
+        { "type": "app", "label": "Irregular section tool", "url": "https://cw-environment.erdc.dren.mil/cwmg/rha/RHA-Cross.html" },
+        { "type": "documentation", "label": "Technical note", "url": "https://hdl.handle.net/11681/4038" }
+      ]
+    },
+    {
+      "id": "xs-calc",
+      "name": "Cross-Section Calculator",
+      "fullName": "1D Cross-Section Hydraulics Calculator",
+      "description": "Single-page web app that computes 1D open-channel hydraulics for a cross-section with Manning's equation, supporting horizontally varying n, ineffective flow areas, obstructions, levees and USGS 3DEP cross-section import.",
+      "category": "hydrology-hydraulics",
+      "type": "Web app",
+      "tags": ["Manning's equation", "Cross-section", "Open-channel hydraulics", "3DEP"],
+      "links": [
+        { "type": "app", "url": "https://usace-wrises.github.io/xs-calc/" },
+        { "type": "repository", "url": "https://github.com/USACE-WRISES/xs-calc" }
+      ],
+      "repos": ["xs-calc"]
+    },
+    {
+      "id": "erams-flow-analysis",
+      "name": "eRAMS Flow Analysis",
+      "description": "Tools on Colorado State University's eRAMS platform, developed in partnership with ERDC, that automate standard Bulletin 17B analyses of USGS streamflow gage data, visualize streamflow and compute environmental flow metrics.",
+      "category": "hydrology-hydraulics",
+      "type": "Web app",
+      "tags": ["Streamflow", "Flood frequency", "Environmental flows", "USGS gages"],
+      "note": "Hosted by Colorado State University (eRAMS).",
+      "links": [
+        { "type": "app", "url": "https://erams.com/flowanalysis" },
+        { "type": "reference", "label": "eRAMS platform", "url": "https://erams.com/catena/" }
+      ]
+    },
+    {
+      "id": "lsri",
+      "name": "LSRI",
+      "fullName": "Life Safety Risk Indicator",
+      "description": "USACE screening-level tool that represents the relative life risk a proposed flood risk management project would reduce, used to prioritize studies and projects; ERDC contributed to parts of the framework, including the Levee and Dam Screening Tools.",
+      "category": "hydrology-hydraulics",
+      "type": "Web app",
+      "tags": ["Life safety", "Flood risk", "Screening", "Prioritization"],
+      "note": "Developed with the USACE Risk Management Center.",
+      "links": [
+        { "type": "app", "label": "LSRI homepage", "url": "https://lsri.sec.usace.army.mil/" },
+        { "type": "reference", "label": "Planning webinar", "url": "https://planning.erdc.dren.mil/toolbox/resources.cfm?Id=0&WId=700&Option=Planning%20Webinars" }
+      ]
+    },
+    {
+      "id": "engrecon",
+      "name": "EngrEcon",
+      "fullName": "Engineering economics toolkit",
+      "description": "R package and web app for standard engineering economics calculations such as cost conversion, cash-flow analysis and life-cycle cost analysis for water resources and restoration projects.",
+      "category": "planning-decision-support",
+      "type": "R package",
+      "tags": ["Engineering economics", "Life-cycle cost", "Annualization", "CRAN", "Shiny"],
+      "note": "As of May 2025, model documentation was under review for USACE certification.",
+      "links": [
+        { "type": "app", "label": "Launch web app", "url": "https://wrises.shinyapps.io/engrecon-webapp/" },
+        { "type": "download", "label": "CRAN package", "url": "https://CRAN.R-project.org/package=EngrEcon" }
+      ]
+    },
+    {
+      "id": "dam-removal-cost",
+      "name": "Dam Removal Cost Estimator",
+      "description": "Web app that estimates dam removal costs with a machine-learning (gradient boosted) model trained on 668 dam removal projects.",
+      "category": "planning-decision-support",
+      "type": "Web app",
+      "tags": ["Dam removal", "Cost estimation", "Machine learning", "Shiny"],
+      "links": [
+        { "type": "app", "url": "https://wrises.shinyapps.io/DamRemovalCostPredictiveModel/" },
+        { "type": "publication", "label": "Journal article", "url": "https://doi.org/10.3389/fevo.2023.1215471" },
+        { "type": "reference", "label": "USGS cost report", "url": "https://www.usgs.gov/publications/dam-removal-cost-databases-and-drivers" },
+        { "type": "repository", "label": "App source", "url": "https://github.com/USACE-WRISES/DamRemovalCostModel" },
+        { "type": "repository", "label": "Revised model code (NID)", "url": "https://github.com/USACE-WRISES/DamRemovalCostUS" }
+      ],
+      "repos": ["DamRemovalCostModel", "DamRemovalCostUS"]
+    },
+    {
+      "id": "utoy-decisions",
+      "name": "Utoy Creek Decision Support",
+      "fullName": "Utoy Creek Decision Support Models",
+      "description": "Case-study report applying cost-effectiveness and incremental cost analysis (CEICA) and community demographic analysis to the Utoy Creek (Atlanta, Georgia) Section 206 aquatic ecosystem restoration study.",
+      "category": "planning-decision-support",
+      "type": "Report",
+      "tags": ["CEICA", "Case study", "Section 206", "Socioeconomics"],
+      "links": [
+        { "type": "documentation", "label": "Online report", "url": "https://usace-wrises.github.io/UtoyDecisions/" },
+        { "type": "repository", "url": "https://github.com/USACE-WRISES/UtoyDecisions" }
+      ],
+      "repos": ["UtoyDecisions"]
+    },
+    {
+      "id": "resst",
+      "name": "RESST",
+      "fullName": "Reservoir Sustainable Sediment Tool",
+      "description": "Map-based web app for exploring reservoir sediment-management sites, case studies and literature, with keyword filters, a national dashboard, a searchable publication library and downloadable GIS data.",
+      "category": "data-gis",
+      "type": "Web app",
+      "tags": ["Reservoir sedimentation", "Sediment management", "Map", "GIS data"],
+      "featured": true,
+      "links": [
+        { "type": "app", "url": "https://usace-wrises.github.io/resst/" },
+        { "type": "dataset", "label": "GIS data downloads", "url": "https://github.com/USACE-WRISES/resst/releases/tag/data-latest" },
+        { "type": "repository", "url": "https://github.com/USACE-WRISES/resst" }
+      ],
+      "repos": ["resst"]
+    },
+    {
+      "id": "rer-database",
+      "name": "River Engineering Resources Database",
+      "description": "Downloadable CSV tables behind River Engineering Resources: 188 stream assessment methods, 65 documents, 62 data and modeling tools, stream functions and a 156-metric toolbox.",
+      "category": "data-gis",
+      "type": "Dataset",
+      "tags": ["CSV", "Stream assessment methods", "Metrics", "References"],
+      "links": [
+        { "type": "dataset", "label": "CSV downloads", "url": "https://usace-wrises.github.io/RiverEngineeringResourcesDB/" },
+        { "type": "repository", "url": "https://github.com/USACE-WRISES/RiverEngineeringResourcesDB" }
+      ],
+      "repos": ["RiverEngineeringResourcesDB"]
+    },
+    {
+      "id": "terrain-to-stl",
+      "name": "Terrain to STL",
+      "description": "Converts an HEC-RAS terrain HDF or a DEM GeoTIFF into a watertight STL shell for 3D printing or visualization, in the browser or with a Windows desktop app that includes an STL viewer.",
+      "category": "data-gis",
+      "type": "Web app",
+      "tags": ["HEC-RAS", "DEM", "STL", "3D printing", "Terrain"],
+      "note": "The Windows desktop bundle is unsigned.",
+      "links": [
+        { "type": "app", "url": "https://usace-wrises.github.io/terrain-to-stl/" },
+        { "type": "download", "label": "Windows portable app", "url": "https://github.com/USACE-WRISES/terrain-to-stl/releases/latest/download/terrain-to-stl-desktop-windows-x64.zip" },
+        { "type": "repository", "url": "https://github.com/USACE-WRISES/terrain-to-stl" }
+      ],
+      "repos": ["terrain-to-stl"]
+    },
+    {
+      "id": "ecomod-training",
+      "name": "Using R for Ecological Modeling in USACE",
+      "description": "Online training book for USACE biologists, planners and analysts covering R basics, data wrangling and visualization, habitat models with ecorest, annualization, CEICA, and statistical and spatial models.",
+      "category": "training-resources",
+      "type": "Training",
+      "tags": ["R", "Training", "ecorest", "Habitat models", "Data science"],
+      "links": [
+        { "type": "documentation", "label": "Training website", "url": "https://usace-wrises.github.io/USACE.EcoMod.Training/" },
+        { "type": "repository", "url": "https://github.com/USACE-WRISES/USACE.EcoMod.Training" }
+      ],
+      "repos": ["USACE.EcoMod.Training"]
+    },
+    {
+      "id": "github-tutorials",
+      "name": "GitHub Workflow Tutorials",
+      "fullName": "GitHub Skill Building Tutorials for Students & Researchers",
+      "description": "Step-by-step tutorial book with video walkthroughs for cloning, creating, forking and maintaining repositories and resolving conflicts using the browser, Git GUI, VS Code and RStudio.",
+      "category": "training-resources",
+      "type": "Training",
+      "tags": ["Git", "GitHub", "Version control", "RStudio", "VS Code"],
+      "links": [
+        { "type": "documentation", "label": "Tutorial website", "url": "https://usace-wrises.github.io/GitHub_Workflow_Tutorial_Webpage/" },
+        { "type": "reference", "label": "Zenodo record (DOI)", "url": "https://doi.org/10.5281/zenodo.15717297" },
+        { "type": "repository", "url": "https://github.com/USACE-WRISES/GitHub_Workflow_Tutorial_Webpage" }
+      ],
+      "repos": ["GitHub_Workflow_Tutorial_Webpage"]
+    },
+    {
+      "id": "river-engineering-resources",
+      "name": "River Engineering Resources",
+      "description": "Searchable web catalog of river engineering references (documents, data and modeling tools) and 188 stream assessment methods, focused on reach-scale hydrology, hydraulics, sediment transport and geomorphology.",
+      "category": "training-resources",
+      "type": "Web app",
+      "tags": ["References", "Stream assessment methods", "Hydraulics", "Geomorphology", "Sediment transport"],
+      "links": [
+        { "type": "app", "url": "https://usace-wrises.github.io/RiverEngineeringResources/" },
+        { "type": "dataset", "label": "Database (CSV)", "url": "https://usace-wrises.github.io/RiverEngineeringResourcesDB/" },
+        { "type": "repository", "url": "https://github.com/USACE-WRISES/RiverEngineeringResources" }
+      ],
+      "repos": ["RiverEngineeringResources"]
+    },
+    {
+      "id": "itek-vault",
+      "name": "ITEK Vault",
+      "description": "Locally installed, retrieval-augmented language model for source-grounded querying and synthesis of a curated corpus of Indigenous Traditional Ecological Knowledge (ITEK) literature.",
+      "category": "training-resources",
+      "type": "Local application",
+      "tags": ["Indigenous knowledge", "ITEK", "Literature synthesis", "LLM", "Python"],
+      "note": "Intended for research and educational use; runs on your own computer.",
+      "links": [
+        { "type": "documentation", "label": "Installation and use guide", "url": "https://usace-wrises.github.io/ITEK_Vault/" },
+        { "type": "reference", "label": "Zenodo record (DOI)", "url": "https://doi.org/10.5281/zenodo.18436869" },
+        { "type": "repository", "url": "https://github.com/USACE-WRISES/ITEK_Vault" }
+      ],
+      "repos": ["ITEK_Vault"]
+    }
+  ]
+}

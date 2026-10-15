@@ -1,0 +1,71 @@
+name: Check resources
+
+# Validates the catalog, compares it with the organization's public repositories and checks every
+# link. Runs when the catalog or site changes, every Monday, and on demand (the schedule and the
+# manual button only work once this file is on the default branch).
+on:
+  push:
+    paths:
+      - "data/**"
+      - "scripts/**"
+      - "index.html"
+      - "404.html"
+      - ".github/workflows/check-resources.yml"
+  pull_request:
+    paths:
+      - "data/**"
+      - "scripts/**"
+      - "index.html"
+      - "404.html"
+      - ".github/workflows/check-resources.yml"
+  schedule:
+    - cron: "23 13 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: read
+
+concurrency:
+  group: check-resources-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+
+      - name: GitHub Pages status (information only)
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api "repos/${{ github.repository }}/pages" --jq '{status, build_type, html_url, source}' \
+            || echo "GitHub Pages is not enabled for this repository yet (Settings > Pages > Source: GitHub Actions)."
+
+      - name: Discover repositories and check links
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: >-
+          python scripts/discover_resources.py
+          --fail-on-broken
+          --fail-on-new
+          --output reports/discovery-report.md
+          --json reports/discovery-report.json
+          --print-json
+
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: discovery-report
+          path: reports/
+          retention-days: 30

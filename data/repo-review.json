@@ -1,0 +1,29 @@
+{
+  "lastReviewed": "2026-10-15",
+  "repos": {
+    "tools": {
+      "decision": "excluded",
+      "reason": "Repository of this directory."
+    },
+    "resst-dev": {
+      "decision": "excluded",
+      "reason": "Archived development copy of RESST; superseded by the resst repository, which is listed."
+    },
+    "UtoyEcoMod": {
+      "decision": "excluded",
+      "reason": "Describes itself as a preliminary working version for internal use; the related Utoy Creek decision-support report is listed instead."
+    },
+    "GitHub_Basic_Skills": {
+      "decision": "excluded",
+      "reason": "Practice repository for the GitHub Workflow Tutorials exercises; not a standalone resource."
+    },
+    "USACE-WRISES.github.io": {
+      "decision": "excluded",
+      "reason": "Organization root site (2022 team website); not a tool or technical resource."
+    },
+    "WRISES.Models": {
+      "decision": "excluded",
+      "reason": "Earlier single-page catalog of WRISES models (May 2025); its entries are included in this directory, which credits it as a source."
+    }
+  }
+}
